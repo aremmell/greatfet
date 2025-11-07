@@ -13,7 +13,6 @@ import os
 from greatfet import GreatFET
 from greatfet import find_greatfet_asset
 
-
 def install_udev_rules():
     """ Installs udev rules as appropriate for the Linux distribution. """
 
@@ -75,6 +74,10 @@ def ensure_access():
     elif 'win32' in sys.platform:
         # TODO: install libusb with libwdi?
         raise NotImplementedError()
+
+    elif 'darwin' in sys.platform:
+        # Don't think there's anything to do. /dev/(tty|cu)* are all readable and writable by world.
+        pass
 
     else:
         raise RuntimeError('Unknown or unsupported system!')
